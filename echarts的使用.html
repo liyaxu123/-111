@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>体温数据图</title>
+    <style>
+        #main{
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+     <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+     <div id="main" style="width: 800px;height:400px;"></div>
+</body>
+ <!-- 引入 ECharts 文件 -->
+ <script src="./js/echarts.js"></script>
+ <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+          text: "人体温度统计图",
+          left:'center',
+          top :'auto'
+        },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            crossStyle: {
+              color: "#999"
+            }
+          }
+        },
+        toolbox: {
+          feature: {
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ["line", "bar"] },
+            restore: { show: true },
+            saveAsImage: { show: true }
+          }
+        },
+        legend: {
+          data: ["早上", "中午", "晚上"],
+          top :'30px'
+        },
+        xAxis: [
+          {
+            type: "category",
+            name: "人员编号",
+            data: [
+              "1号",
+              "2号",
+              "3号",
+              "4号",
+              "5号",
+              "6号",
+              "7号",
+              "8号",
+            ],
+            axisPointer: {
+              type: "shadow"
+            }
+          }
+        ],
+        yAxis: [
+          {
+            type: "value",
+            name: "温度",
+            min: 0,
+            max: 40,
+            interval: 5,
+            axisLabel: {
+              formatter: "{value} °C"
+            }
+          }
+        ],
+        series: [
+          {
+            name: "早上",
+            type: "bar",
+             // 体温数据在这里改
+            data: [20,21,21.5,22,21,21,22,22.5]
+          },
+          {
+            name: "中午",
+            type: "bar",
+             // 体温数据在这里改
+            data: [21.5,21.5,20.5,21,20.5,21,20,22]
+          },
+          {
+            name: "晚上",
+            type: "bar",
+             // 体温数据在这里改
+            data: [20.5,20,21,20,21,21,21,21]
+          }
+        ]
+      };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</html>

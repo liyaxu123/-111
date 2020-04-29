@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组去重总结</title>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementsByClassName('box')[0];
+    var arr = [1, 1, 2, 4, 5, 3, 4, 2, 6, 8, 10, 6, 8, 7, 4];
+    var arr2 = [1, 1, 'true', 'true', true, true, 15, 15, false, false, undefined, undefined, null, null, NaN, NaN, 'NaN', 0, 0, 'a', 'a', {}, {}];
+
+    // 第一种方法:使用ES6中的set是最简单的去重方法，
+    // 该方法可以说是最完美的方法，就是需要环境支持ES6
+    function arr_unique(arr) {
+        return [...new Set(arr)];
+        //或者
+        //return  Array.from(new Set(arr));
+    }
+    console.log(arr_unique(arr));
+    console.log(arr_unique(arr2));
+
+    // 第二种方法：forEach + indexOf 
+    // 该方法的不足之处在于无法对NaN进行过滤，原因是var a = [1, NaN , 2]; a.indexOf(NaN) === -1;，
+    // 改善的方法是使用includes方法
+    function arr_unique2(arr) {
+        var res = [];
+        arr.forEach((val, index) => {
+            if (res.indexOf(val) === -1) {
+                res.push(val);
+            }
+        });
+        return res;
+    }
+    console.log(arr_unique2(arr));
+    console.log(arr_unique2(arr2));
+
+    // 第三种方法：filter+indexOf 
+    // 美中不足的地方在于漏掉了NaN,原因同方法二
+    function arr_unique3(arr) {
+        return arr.filter((val, index, item) => {
+            return item.indexOf(val) === index;
+        });
+    }
+    console.log(arr_unique3(arr));
+    console.log(arr_unique3(arr2));
+
+    // 第四中方法：forEach + includes 
+    // 该方法也算是比较完美，没有什么遗漏的地方
+    function arr_unique4(arr) {
+        var res = [];
+        arr.forEach((val) => {
+            if (!res.includes(val)) {
+                res.push(val);
+            }
+        });
+        return res;
+    }
+    console.log(arr_unique4(arr));
+    console.log(arr_unique4(arr2));
+
+    // 第五种方法：reduce + includes 
+    function arr_unique5(arr) {
+        return arr.reduce((prev, cur) => {
+            if (!prev.includes(cur)) {
+                prev.push(cur);
+            }
+            return prev;
+        }, []);
+    }
+    console.log(arr_unique5(arr));
+    console.log(arr_unique5(arr2));
+
+    // 第六种方法：嵌套循环+splice 
+    // 这是最麻烦的方法，效率十分低下，每一个循环都会去动态获取数组的length。
+    // 且该方法无法过滤掉NaN，因为NaN === NaN的结果为false。
+    function arr_unique6(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i] === arr[j]) {
+                    arr.splice(j, 1);
+                }
+            }
+        }
+        return arr;
+    }
+    console.log(arr_unique6(arr));
+    console.log(arr_unique6(arr2));
+
+    // 第七种方法：hash+hasOwnProperty+JSON.stringify 
+    // 这种方法是终极版的，因为它可以进行数组中的对象元素的去重哦！
+    // 前面的几种方法是不可以进行对象去重的。不过话说回来，JS中的对象是本身就是一个地址的引用，比如 {} == {} ;//false，
+    // 两者是两个不同的对象，这里我们将其进行JSON.stringify进行简化。
+    function arr_unique7(arr) {
+        var hash = {};
+        return arr.filter((val) => {
+            return hash.hasOwnProperty(typeof val + JSON.stringify(val)) ?
+                false : hash[typeof val + JSON.stringify(val)] = true;
+        });
+    }
+    console.log(arr_unique7(arr));
+    console.log(arr_unique7(arr2));
+
+
+
+
+
+
+
+</script>

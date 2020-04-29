@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Move.js Demo</title>
+</head>
+<style>
+    .box {
+        margin: 10px;
+        width: 100px;
+        height: 100px;
+        background: #7C9DD4;
+        box-shadow: 5px 5px 0px #D1D1D1;
+    }
+
+    #playButton {
+        display: block;
+        font-size: 20px;
+        margin: 20px 10px;
+        font-weight: bold;
+        color: #222;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <a href="#" rel="external nofollow" rel="external nofollow" id="playButton">Play</a>
+    <div class="box"></div>
+    <script type="text/javascript" src="./js/move.js"></script>
+</body>
+<script>
+    document.getElementById('playButton').onclick = function (e) {
+        // move('.box')
+        //     .x(300)
+        //     .end();
+        // 1、set(prop, val); set()方法用于设置元素的css属性，他带有两个参数：css属性和属性值。
+        // move('.box').set('background-color', '#CCC').end();
+        // move('.box').set('margin-left', 500).end();
+        // move('.box').set('color', '#222').end();
+        // 2、add(prop, val); add()方法用来增加其已经设置的属性值。该方法必须数值型值，以便用来增加。该方法必须有两个参数：属性值和其增量：
+        // move('.box').add('margin-left', 200).end();
+        // 3、sub(prop, val); sub()是add()的逆过程，他接受两个相同的参数，但其值将从属性值中减去。
+        // move('.box').sub('margin-left', 200).end();
+        // 4、rotate(deg); 该方法通过提供的数值作为参数来旋转元素。当方法被调用的时候通过附加到元素的 transform 属性上。下面的代码旋转元素90deg：
+        // move('.box').rotate(140).end();
+        // 5、duration(n); 通过该方法，你可以设置动画的播放时间。例如：如下代码，2秒钟将元素从左侧往右移动200px：
+        // move('.box').add('margin-left', 200).duration('2s').end();
+        // 6、另一例子，下面的代码。Move.js在2秒钟内将会修改元素的margin属性，设置背景色，同时将元素旋转90度。
+        // move('.box').add('margin-left', 200)
+        //     .set('background-color', '#CCC')
+        //     .rotate(90)
+        //     .duration('2s').end();
+        // 7、translate(x[, y]); translate()方法用于修改元素的默认位置，使用提供的坐标作为参数，如果仅设置一个参数，将作为x坐标，如果提供了第二个参数，将作为y坐标：
+        // move('.box').translate(200, 400).end();
+        // 8、x() and y(); x()方法用于调整元素的x坐标，y()方法用于调整元素的y坐标。两个方法的参数可以是正数也可以是负数，如下：
+        // move('.box').x(300).y(-20).end();
+        // 9、skew(x, y); skew()用于调整一个相对于x和y轴的角度。该方法可以被分为skewX(deg)和skewY(deg)两个方法：
+        // move('.box').skew(30, 40).end();
+        // 10、scale(x, y); 该方法用于放大或压缩元素的大小，按照提供的每一个值，将调用transform的scale方法
+        // move('.box').scale(3, 3).end();
+        // 11、ease(fn); 如果你使用过CSS3过渡，你就了解ease函数作用在transition属性上。他指定了过渡的行为。每个 ease 函数是 in、out、in-out、snap、cubic-bezeir等。这些函数可以通过Move.js提供的ease()方法得到调用。例如：
+        // move('.box').ease('in').x(400).end();
+        // move('.box').ease('cubic-bezier(0,1,1,0)').x(400).end();
+        // 12、end(); 该方法用于Move.js代码片段的结束，他标识动画的结束。技术上，该方法触发动画的播放。该方法接受一个可选的callback回掉函数。代码如下：
+        // move('.box').set('background-color', 'red').duration(1000)
+        //     .end(function () {
+        //         alert("Animation Over!");
+        //     });
+        // 13、delay(n); 正如方法所暗示的，该方法提供一个时间的数值作为动画的延时。如下：
+        // move('.box')
+        //     .set('background-color', 'red')
+        //     .delay(1000)
+        //     .end();
+        // 14、then(); 该方法是Move.js中一个最重要的函数。他用于分割动画为两个集合，并按顺序执行。如下动画被分为两步，通过then()方法实现分割：
+        // move('.box')
+        //     .set('background-color', 'red')
+        //     .x(500)
+        //     .then()
+        //     .y(400)
+        //     .set('background-color', 'green')
+        //     .end();
+        // ## 使用Move.js创建复杂动画 ##
+        move('.box')
+            .to(500, 200)
+            .rotate(180)
+            .scale(.5)
+            .set('background-color', '#FF0551')
+            .set('border-color', 'black')
+            .duration('3s')
+            .skew(50, -10)
+            .then()
+            .set('opacity', 0)
+            .duration('0.3s')
+            .scale(0.1)
+            .pop()
+            .end();
+
+
+
+    };
+
+</script>
+
+</html>

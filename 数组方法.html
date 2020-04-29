@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数组方法总结</title>
+	</head>
+	<body>
+	</body>
+</html>
+<script type="text/javascript">
+	var arr = [1,2,3,4,5,6,7,8,9,10];
+	/*
+		一、Array.forEach()
+		.forEach()方法没有返回值，你不需要在回调函数里写return，这是无意义的。
+		.forEach() 方法能够方便的让你 遍历数组里的每个元素，你可以在回调函数里对每个元素进行操作。
+	*/
+	// var sum = 0;
+	// arr.forEach(function(item,index,array){
+	// 	console.log('每一项：'+item)
+	// 	console.log('当前项的索引：'+index)
+	// 	console.log('当前数组本身：'+array)
+	// 	sum += item;
+	// });
+	// console.log('和：'+sum)
+	// 结果：和：55
+	
+	/*
+		二、Array.map()
+		.map() 方法能够遍历整个数组，然后 返回一个新数组，这个新数组里的元素是经过了指定的回调函数处理过的。
+		如果你想修改数组里的每个元素，然后将修改后的数组存入新的数组，那使用 .map() 方法最方便。
+	*/
+	// var newArr = arr.map(function(item,index,array){
+	// 		console.log('每一项：'+item)
+	// 		console.log('当前项的索引：'+index)
+	// 		console.log('当前数组本身：'+array)
+	// 	if(item%2==0){
+	// 		return item*2
+	// 	}else{
+	// 		return item
+	// 	}
+	// });
+	// console.log(newArr)
+	// 结果：(10) [1, 4, 3, 8, 5, 12, 7, 16, 9, 20]
+	
+	/*
+		三、Array.filter()
+		.filter() 方法能够 过滤掉数组中的某些元素，你可以在回调函数里设定条件，
+		不符合条件的元素都会排除在外，结果返回一个新数组。
+	*/
+   // var newarr = arr.filter(function(item,index,array){
+	   // 		console.log('每一项：'+item)
+	   // 		console.log('当前项的索引：'+index)
+	   // 		console.log('当前数组本身：'+array)
+	  //  return item%2==0
+   // })
+   // console.log(newarr)
+   // 结果：(5) [2, 4, 6, 8, 10]
+   
+   /*
+   	四、Array.indexOf()
+   	indexOf() 能够告诉你 某个元素在数组中出现的位置，它返回的是索引值，
+	如果数组里有重复的元素，它会返回第一个元素的位置，
+	如果没有指定的元素返回 -1 。
+   */
+   // console.log(arr.indexOf(5))	
+   // 结果：4
+   // console.log(arr.indexOf(20))
+   // 结果：-1
+   /*
+   	五、Array.every()
+   	.every() 方法的作用是用指定的回调函数去检查数组中的每个元素，
+	如果对于每个元素，这个回调函数都返回true，则.every()返回true。
+	否则，.every() 返回false。
+	如果你想知道数组中的所有元素是否都符合某种条件，使用 .every() 最方便。
+   */
+	// var newArr = arr.every(function(item,index,array){
+	// 	// console.log(item)
+	// 	// console.log(index)
+	// 	// console.log(array)
+	// 	return item > 0
+	// })
+	// console.log(newArr)
+	// 结果:true
+	/*
+		六、Array.some()
+		some() 方法用于检测数组中的元素是否满足指定条件（函数提供）。
+		some() 方法会依次执行数组的每个元素：
+		如果有一个元素满足条件，则表达式返回true , 剩余的元素不会再执行检测。
+		如果没有满足条件的元素，则返回false。
+		注意： some() 不会对空数组进行检测。
+		注意： some() 不会改变原始数组。
+	*/
+    var result = arr.some(function(item,index,array){
+		// console.log(item)
+		// console.log(index)
+		// console.log(array)
+		return item > 9
+	})
+	console.log(result)
+	// 结果：true
+   
+   
+   
+   
+   
+</script>

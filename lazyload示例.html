@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lazyload的使用</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        .box {
+            width: 100%;
+            height: 100%;
+        }
+        .box{
+            margin: 0 auto;
+            text-align: center;
+        }
+        img {
+            width: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Lazy Load是一个用js编写的jQuery插件，用来实现图片的延迟加载。只有在浏览器可视区域的图片才会被加载，没有滚动到的区域img标签上会有一个占位图片，而真实图片不会被载入。当页面比较长，图片比较多的时候，延迟加载图片可以加快页面加载速度，在某些情况下降低服务器负担。</h1>
+        <img class="lazyload" data-original="images/1.jpg">
+        <img class="lazyload" data-original="images/2.jpg">
+        <img class="lazyload" data-original="images/3.jpg">
+        <img class="lazyload" data-original="images/4.jpg">
+        <img class="lazyload" data-original="images/5.gif">
+        <img class="lazyload" data-original="images/6.jpg">
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery-3.4.1.min.js"></script>
+<script src="./js/lazyload.js"></script>
+<script>
+    $(function () {
+        $("img.lazyload").lazyload()
+    });
+</script>
